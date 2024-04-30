@@ -18,7 +18,11 @@
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
-
+            <?php if ($this->session->flashdata('succMsg')) { ?>
+                <div class="alert alert-success">
+                    <?= $this->session->flashdata('succMsg'); ?>
+                </div>
+            <?php } ?>
 
 
             <div class="row">
@@ -41,7 +45,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
                                             <select class="form-select" id="floatingSelectGrid" name="parent_id">
-                                                <option selected="">Select</option>
+                                                <option value="" selected="">Select</option>
                                             </select>
                                             <label for="floatingSelectGrid">Parent Category</label>
                                         </div>
