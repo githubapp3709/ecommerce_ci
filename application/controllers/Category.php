@@ -21,7 +21,10 @@ class Category extends CI_Controller
                 redirect('category');
             }
         } else {
-            $this->load->view('category');
+            $data['categories'] = $this->CategoryModel->all_category();
+            // print_r($data);
+            // die();
+            $this->load->view('category', $data);
         }
     }
 }

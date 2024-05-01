@@ -46,6 +46,12 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-select" id="floatingSelectGrid" name="parent_id">
                                                 <option value="" selected="">Select</option>
+                                                <?php
+                                                foreach ($categories as $cat) {
+                                                ?>
+                                                    <option value="<?= $cat->cate_id ?>"><?= $cat->cate_name ?></option>
+                                                <?php }
+                                                ?>
                                             </select>
                                             <label for="floatingSelectGrid">Parent Category</label>
                                         </div>

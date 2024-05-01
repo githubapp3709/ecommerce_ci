@@ -7,14 +7,21 @@ class CategoryModel extends CI_Model
     {
         $post['added_on'] = date('d M, Y');
         $post['cate_id'] = mt_rand(11111, 99999);
-        if (empty($post['parent_id'])) {
-            $post['parent_id'] = null;
-        }
+        // if (empty($post['parent_id'])) {
+        //     $post['parent_id'] = null;
+        // }
         $q = $this->db->insert('ec_category', $post);
         if ($q) {
             return true;
         } else {
             return false;
+        }
+    }
+    public function all_category()
+    {
+        $q = $this->db->where(['status' => '1', 'parent_id' => ''])->get('ec_category');
+        if ($q->num_rows()) {
+            return $q->result();
         }
     }
 }
