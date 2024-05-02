@@ -409,6 +409,12 @@
                                 <span>Pincode</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="settings/banner" class="waves-effect">
+                                <i class="uim uim-airplay"></i>
+                                <span>Banner</span>
+                            </a>
+                        </li>
 
 
                         <!-- <li>
