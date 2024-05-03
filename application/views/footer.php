@@ -88,9 +88,26 @@
 <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>
 
 <script src="assets/js/pages/dashboard.init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- App js -->
 <script src="assets/js/app.js"></script>
 </body>
 
 </html>
+
+<script>
+    function get_categories(cate_id) {
+        $.ajax({
+            url: "<?php echo base_url('category/get_sub_cate') ?>",
+            method: "post",
+            data: {
+                cate_id: cate_id
+            },
+            success: function(data) {
+                $('.subcat').html(data);
+
+            }
+        });
+    }
+</script>

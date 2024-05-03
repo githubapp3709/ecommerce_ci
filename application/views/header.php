@@ -415,6 +415,12 @@
                                 <span>Banner</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="product" class="waves-effect">
+                                <i class="uim uim-airplay"></i>
+                                <span>Product</span>
+                            </a>
+                        </li>
 
 
                         <!-- <li>

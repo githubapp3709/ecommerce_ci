@@ -46,7 +46,7 @@ class Settings extends CI_Controller
             $check = $this->settingsModel->add_banner($post);
             if ($check) {
                 $this->session->set_flashdata('succMsg', 'Data inserted successfully');
-                redirect('settings/pincode');
+                redirect('settings/banner');
             }
         } else {
 
