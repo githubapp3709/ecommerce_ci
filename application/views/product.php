@@ -1,9 +1,9 @@
 <?php
-if ($this->session->userdata('pro_id') != '') {
-    $pro_id = $this->session->userdata('pro_id');
-} else {
-    $this->session->set_userdata('pro_id', mt_rand(11111, 99999));
-}
+// if ($this->session->userdata('pro_id') != '') {
+//     $pro_id = $this->session->userdata('pro_id');
+// } else {
+//     $this->session->set_userdata('pro_id', mt_rand(11111, 99999));
+// }
 
 ?>
 
@@ -30,6 +30,11 @@ if ($this->session->userdata('pro_id') != '') {
             <?php if ($this->session->flashdata('succMsg')) { ?>
                 <div class="alert alert-success">
                     <?= $this->session->flashdata('succMsg'); ?>
+                </div>
+            <?php } ?>
+            <?php if ($this->session->flashdata('errMsg')) { ?>
+                <div class="alert alert-danger">
+                    <?= $this->session->flashdata('errMsg'); ?>
                 </div>
             <?php } ?>
 
