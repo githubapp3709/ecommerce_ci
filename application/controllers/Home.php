@@ -11,8 +11,7 @@ class Home extends CI_Controller
     public function index()
     {
         $data['banner'] = $this->HomeModel->get_banner();
-        // print_r($data['banner']);
-        // die();
+        $data['categ'] = $this->HomeModel->get_categ();
         $this->load->view('front/index.php', $data);
     }
 }

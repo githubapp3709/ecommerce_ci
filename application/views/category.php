@@ -40,7 +40,7 @@
                                 <h5 class="card-title">Floating labels</h5>
                                 <p class="card-title-desc">Create beautifully simple form labels that float over your input fields.</p>
 
-                                <?= form_open() ?>
+                                <?= form_open_multipart() ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">
@@ -62,6 +62,13 @@
                                             <label for="floatingFirstnameInput">Category Name</label>
                                         </div>
                                         <?= form_error('cate_name') ?>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating mb-3">
+                                            <input type="file" class="form-select" name="image">
+                                            <label for="floatingFirstnameInput">Image</label>
+                                        </div>
+                                        <?= form_error('image') ?>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating mb-3">

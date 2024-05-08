@@ -12,4 +12,14 @@ class HomeModel extends CI_Model
             return false;
         }
     }
+
+    public function get_categ()
+    {
+        $q = $this->db->where('status', '1')->order_by('id', 'desc')->get('ec_category');
+        if ($q->num_rows()) {
+            return $q->result();
+        } else {
+            return false;
+        }
+    }
 }
