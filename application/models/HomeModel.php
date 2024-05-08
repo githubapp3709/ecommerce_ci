@@ -22,6 +22,18 @@ class HomeModel extends CI_Model
             return false;
         }
     }
+
+
+    public function category_name($cate_id)
+    {
+
+        $q = $this->db->where('cate_id', $cate_id)->get('ec_category');
+        if ($q->num_rows()) {
+            return $q->row()->cate_name;
+        } else {
+            return false;
+        }
+    }
     public function get_products()
     {
         $q = $this->db->where('status', '1')->order_by('id', 'asc')->get('ec_product');
@@ -31,13 +43,12 @@ class HomeModel extends CI_Model
             return false;
         }
     }
-
-    public function category_name($cate_id)
+    public function product_details($slug)
     {
 
-        $q = $this->db->where('cate_id', $cate_id)->get('ec_category');
+        $q = $this->db->where(['slug' => $slug, 'status' => 1])->get('ec_product');
         if ($q->num_rows()) {
-            return $q->row()->cate_name;
+            return $q->row();
         } else {
             return false;
         }

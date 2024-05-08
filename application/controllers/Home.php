@@ -15,4 +15,9 @@ class Home extends CI_Controller
         $data['products'] = $this->HomeModel->get_products();
         $this->load->view('front/index.php', $data);
     }
+
+    public function product_details($slug)
+    {
+        $data['arr'] = $this->HomeModel->product_details($slug);
+    }
 }
