@@ -12,6 +12,7 @@ class Home extends CI_Controller
     {
         $data['banner'] = $this->HomeModel->get_banner();
         $data['categ'] = $this->HomeModel->get_categ();
+        $data['products'] = $this->HomeModel->get_products();
         $this->load->view('front/index.php', $data);
     }
 }
