@@ -1,3 +1,4 @@
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="assets_front/js/vendor/jquery.js"></script>
 <script src="assets_front/js/vendor/waypoints.js"></script>
 <script src="assets_front/js/bootstrap-bundle.js"></script>
