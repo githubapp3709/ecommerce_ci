@@ -3,11 +3,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class CartModel extends CI_Model
 {
+
+    public function get_userid()
+    {
+        return $this->session->userdata('user_id');
+    }
+
+    public function get_cart()
+    {
+        $q = $this->db->where('user_id', $this->get_userid())->get('ec_cart');
+        if ($q->num_rows()) {
+            return $q->result();
+        } else {
+            return false;
+        }
+    }
+
     public function add_to_cart($post)
     {
-        $user_id = $this->session->userdata('user_id');
+        $user_id = $this->get_userid();
         $exist = $this->db->where(['pro_id' => $post['pro_id'], 'user_id' => $user_id])->get('ec_cart');
         if ($exist->num_rows()) {
+            return false;
         } else {
             $q = $this->db->select('pro_name, mrp, slug, pro_main_image')->where('pro_id', $post['pro_id'])->get('ec_product');
             if ($q->num_rows()) {
