@@ -57,4 +57,11 @@ class CartModel extends CI_Model
         return true;
         // print_r($this->db->last_query());
     }
+    public function delete_product($pro_id)
+    {
+        $q = $this->db->where(['pro_id' => $pro_id, 'user_id' => $this->get_userid()])->delete('ec_cart');
+        if ($q) {
+            return true;
+        }
+    }
 }

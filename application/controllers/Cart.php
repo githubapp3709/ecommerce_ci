@@ -39,4 +39,13 @@ class Cart extends CI_Controller
             redirect('cart');
         }
     }
+
+    public function delete_product($pro_id)
+    {
+        $check = $this->CartModel->delete_product($pro_id);
+        if ($check) {
+            $this->session->set_flashdata('succMsg', 'Product removed successfully');
+            redirect('cart');
+        }
+    }
 }
