@@ -11,6 +11,7 @@ class Cart extends CI_Controller
     public function index()
     {
         $data['cart'] =  $this->CartModel->get_cart();
+        $data['total'] =  $this->CartModel->get_total();
         $this->load->view('front/cart', $data);
     }
     public function add_to_cart()

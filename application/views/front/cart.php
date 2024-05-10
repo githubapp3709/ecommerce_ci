@@ -59,20 +59,20 @@
                             <?= $this->session->flashdata('errMsg'); ?>
                         </div>
                     <?php } ?>
-                    <div class="col-xl-9 col-lg-8">
-                        <div class="tp-cart-list mb-25 mr-30">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2" class="tp-cart-header-product">Product</th>
-                                        <th class="tp-cart-header-price">Price</th>
-                                        <th class="tp-cart-header-quantity">Quantity</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    if (!empty($cart)) :
+                    <?php if (!empty($cart)) : ?>
+                        <div class="col-xl-9 col-lg-8">
+                            <div class="tp-cart-list mb-25 mr-30">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="tp-cart-header-product">Product</th>
+                                            <th class="tp-cart-header-price">Price</th>
+                                            <th class="tp-cart-header-quantity">Quantity</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
                                         foreach ($cart as $arr) : ?>
                                             <tr>
                                                 <!-- img -->
@@ -111,25 +111,14 @@
                                                 </td>
 
                                             </tr>
-                                        <?php endforeach;
-                                    else : ?>
-
-                                        <tr>
-                                            <!-- img -->
-                                            <td class="tp-cart-img" colspan="4">
-                                                <h4>No products in cart</h4>
-                                            </td>
-
-
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tp-cart-bottom">
-                            <div class="row align-items-end">
-                                <div class="col-xl-6 col-md-8">
-                                    <!-- <div class="tp-cart-coupon">
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tp-cart-bottom">
+                                <div class="row align-items-end">
+                                    <div class="col-xl-6 col-md-8">
+                                        <!-- <div class="tp-cart-coupon">
                                         <form action="#">
                                             <div class="tp-cart-coupon-input-box">
                                                 <label>Coupon Code:</label>
@@ -140,49 +129,51 @@
                                             </div>
                                         </form>
                                     </div> -->
-                                </div>
-                                <div class="col-xl-4 col-md-4">
-                                    <div class="tp-cart-update text-md-end">
-                                        <button type="submit" class="tp-cart-update-btn">Update Cart</button>
+                                    </div>
+                                    <div class="col-xl-4 col-md-4">
+                                        <div class="tp-cart-update text-md-end">
+                                            <button type="submit" class="tp-cart-update-btn">Update Cart</button>
+                                        </div>
                                     </div>
                                 </div>
+                                <?= form_close(); ?>
                             </div>
-                            <?= form_close(); ?>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="tp-cart-checkout-wrapper">
-                            <div class="tp-cart-checkout-top d-flex align-items-center justify-content-between">
-                                <span class="tp-cart-checkout-top-title">Subtotal</span>
-                                <span class="tp-cart-checkout-top-price">$742</span>
-                            </div>
-                            <div class="tp-cart-checkout-shipping">
-                                <h4 class="tp-cart-checkout-shipping-title">Shipping</h4>
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            <div class="tp-cart-checkout-wrapper">
+                                <div class="tp-cart-checkout-top d-flex align-items-center justify-content-between">
+                                    <span class="tp-cart-checkout-top-title">Subtotal</span>
+                                    <span class="tp-cart-checkout-top-price">₹ <?= number_format($total['subtotal'], 2)  ?></span>
+                                </div>
+                                <div class="tp-cart-checkout-shipping">
+                                    <h4 class="tp-cart-checkout-shipping-title">Shipping</h4>
 
-                                <div class="tp-cart-checkout-shipping-option-wrapper">
-                                    <div class="tp-cart-checkout-shipping-option">
-                                        <input id="flat_rate" type="radio" name="shipping">
-                                        <label for="flat_rate">Flat rate: <span>$20.00</span></label>
-                                    </div>
-                                    <div class="tp-cart-checkout-shipping-option">
-                                        <input id="local_pickup" type="radio" name="shipping">
-                                        <label for="local_pickup">Local pickup: <span> $25.00</span></label>
-                                    </div>
-                                    <div class="tp-cart-checkout-shipping-option">
-                                        <input id="free_shipping" type="radio" name="shipping">
-                                        <label for="free_shipping">Free shipping</label>
+                                    <div class="tp-cart-checkout-shipping-option-wrapper">
+                                        <?php if ($total['subtotal'] > 499) : ?>
+                                            <p>Free shipping: <del> ₹ <?= number_format($total['delivery'], 2)  ?></del></p>
+                                        <?php else : ?>
+                                            <p>Shipping charges: ₹ <?= number_format($total['delivery'], 2)  ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tp-cart-checkout-total d-flex align-items-center justify-content-between">
-                                <span>Total</span>
-                                <span>$724</span>
-                            </div>
-                            <div class="tp-cart-checkout-proceed">
-                                <a href="checkout.html" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
+                                <div class="tp-cart-checkout-total d-flex align-items-center justify-content-between">
+                                    <span>Total</span>
+                                    <span>₹ <?= number_format($total['grandtotal'], 2)  ?></span>
+                                </div>
+                                <div class="tp-cart-checkout-proceed">
+                                    <a href="checkout.html" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php else : ?>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>No products in cart <a href="" class="btn btn-outline-primary">shop now</a> </h4>
+                            </div>
+                        </div>
+
+
+                    <?php endif; ?>
                 </div>
             </div>
         </section>
