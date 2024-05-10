@@ -46,4 +46,15 @@ class CartModel extends CI_Model
             }
         }
     }
+    public function cart_update($post)
+    {
+
+
+        $count = count($post);
+        for ($i = 0; $i < $count; $i++) {
+            $q = $this->db->where(['pro_id' => $post['up_pro_id'][$i], 'user_id' => $this->get_userid()])->update('ec_cart', ['pro_qty' => $post['up_qty'][$i]]);
+        }
+        return true;
+        // print_r($this->db->last_query());
+    }
 }

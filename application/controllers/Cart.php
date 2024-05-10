@@ -25,4 +25,18 @@ class Cart extends CI_Controller
             redirect('cart');
         }
     }
+
+    public function cart_update()
+    {
+        $post =  $this->input->post();
+        $check =  $this->CartModel->cart_update($post);
+
+        if ($check) {
+            $this->session->set_flashdata('succMsg', 'Cart updated successfully');
+            redirect('cart');
+        } else {
+            $this->session->set_flashdata('errMsg', 'Cart not updated');
+            redirect('cart');
+        }
+    }
 }

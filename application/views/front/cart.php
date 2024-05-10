@@ -45,8 +45,10 @@
 
         <!-- cart area start -->
         <section class="tp-cart-area pb-120">
+            <?= form_open('cart/cart_update'); ?>
             <div class="container">
                 <div class="row">
+
                     <?php if ($this->session->flashdata('succMsg')) { ?>
                         <div class="alert alert-success">
                             <?= $this->session->flashdata('succMsg'); ?>
@@ -69,42 +71,58 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($cart as $arr) : ?>
+                                    <?php
+                                    if (!empty($cart)) :
+                                        foreach ($cart as $arr) : ?>
+                                            <tr>
+                                                <!-- img -->
+                                                <td class="tp-cart-img"><a href="product-details.html"> <img src="uploads/<?= $arr->pro_image ?>" alt=""></a></td>
+                                                <!-- title -->
+                                                <td class="tp-cart-title"><a href="product-details.html"><?= $arr->pro_name ?></a></td>
+                                                <!-- price -->
+                                                <td class="tp-cart-price"><span>₹ <?= number_format($arr->pro_price, 2); ?></span></td>
+                                                <!-- quantity -->
+                                                <td class="tp-cart-quantity">
+                                                    <div class="tp-product-quantity mt-10 mb-10">
+                                                        <span class="tp-cart-minus">
+                                                            <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </span>
+                                                        <input class="tp-cart-input" type="text" readonly name="up_qty[]" value="<?= $arr->pro_qty ?>">
+
+                                                        <span class="tp-cart-plus">
+                                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                                <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <!-- action -->
+                                                <td class="tp-cart-action">
+                                                    <button class="tp-cart-action-btn">
+                                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor" />
+                                                        </svg>
+                                                        <span>Remove</span>
+                                                    </button>
+                                                    <input type="hidden" name="up_pro_id[]" value="<?= $arr->pro_id ?>">
+                                                </td>
+
+                                            </tr>
+                                        <?php endforeach;
+                                    else : ?>
+
                                         <tr>
                                             <!-- img -->
-                                            <td class="tp-cart-img"><a href="product-details.html"> <img src="uploads/<?= $arr->pro_image ?>" alt=""></a></td>
-                                            <!-- title -->
-                                            <td class="tp-cart-title"><a href="product-details.html"><?= $arr->pro_name ?></a></td>
-                                            <!-- price -->
-                                            <td class="tp-cart-price"><span>₹ <?= number_format($arr->pro_price, 2); ?></span></td>
-                                            <!-- quantity -->
-                                            <td class="tp-cart-quantity">
-                                                <div class="tp-product-quantity mt-10 mb-10">
-                                                    <span class="tp-cart-minus">
-                                                        <svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1 1H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                    </span>
-                                                    <input class="tp-cart-input" type="text" value="<?= $arr->pro_qty ?>">
-                                                    <span class="tp-cart-plus">
-                                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5 1V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                            <path d="M1 5H9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                    </span>
-                                                </div>
+                                            <td class="tp-cart-img" colspan="4">
+                                                <h4>No products in cart</h4>
                                             </td>
-                                            <!-- action -->
-                                            <td class="tp-cart-action">
-                                                <button class="tp-cart-action-btn">
-                                                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53033 1.53033C9.82322 1.23744 9.82322 0.762563 9.53033 0.46967C9.23744 0.176777 8.76256 0.176777 8.46967 0.46967L5 3.93934L1.53033 0.46967C1.23744 0.176777 0.762563 0.176777 0.46967 0.46967C0.176777 0.762563 0.176777 1.23744 0.46967 1.53033L3.93934 5L0.46967 8.46967C0.176777 8.76256 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23744 9.82322 1.53033 9.53033L5 6.06066L8.46967 9.53033C8.76256 9.82322 9.23744 9.82322 9.53033 9.53033C9.82322 9.23744 9.82322 8.76256 9.53033 8.46967L6.06066 5L9.53033 1.53033Z" fill="currentColor" />
-                                                    </svg>
-                                                    <span>Remove</span>
-                                                </button>
-                                            </td>
+
+
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -125,10 +143,11 @@
                                 </div>
                                 <div class="col-xl-4 col-md-4">
                                     <div class="tp-cart-update text-md-end">
-                                        <button type="button" class="tp-cart-update-btn">Update Cart</button>
+                                        <button type="submit" class="tp-cart-update-btn">Update Cart</button>
                                     </div>
                                 </div>
                             </div>
+                            <?= form_close(); ?>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-6">
