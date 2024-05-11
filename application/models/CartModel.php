@@ -6,7 +6,11 @@ class CartModel extends CI_Model
 
     public function get_userid()
     {
-        return $this->session->userdata('user_id');
+        if (!empty($this->session->userdata('login_id'))) {
+            return $this->session->userdata('login_id');
+        } else {
+            return $this->session->userdata('user_id');
+        }
     }
 
     public function get_cart()
