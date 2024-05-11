@@ -19,8 +19,6 @@
 </head>
 
 <body>
-
-
     <!-- back to top start -->
     <?php $this->load->view('front/header'); ?>
     <main>
@@ -161,7 +159,7 @@
                                     <span>₹ <?= number_format($total['grandtotal'], 2)  ?></span>
                                 </div>
                                 <div class="tp-cart-checkout-proceed">
-                                    <a href="checkout.html" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
+                                    <a href="checkout" class="tp-cart-checkout-btn w-100">Proceed to Checkout</a>
                                 </div>
                             </div>
                         </div>
