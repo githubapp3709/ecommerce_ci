@@ -57,19 +57,31 @@
                                 <!-- <h3 class="tp-login-title">Login to Shofy.</h3> -->
                                 <p>Don’t have an account? <span><a href="register">Create a free account</a></span></p>
                             </div>
+
+                            <?php if ($this->session->flashdata('errMsg')) { ?>
+                                <div class="alert alert-danger">
+                                    <?= $this->session->flashdata('errMsg'); ?>
+                                </div>
+                            <?php } ?>
                             <div class="tp-login-option">
+
+                                <?= form_open('login') ?>
                                 <div class="tp-login-input-wrapper">
                                     <div class="tp-login-input-box">
                                         <div class="tp-login-input">
-                                            <input id="email" type="email" placeholder="shofy@mail.com">
+
+                                            <input type="email" name="email" placeholder="shofy@mail.com" />
                                         </div>
                                         <div class="tp-login-input-title">
                                             <label for="email">Your Email</label>
+
                                         </div>
+
+                                        <?= form_error('email'); ?>
                                     </div>
                                     <div class="tp-login-input-box">
                                         <div class="tp-login-input">
-                                            <input id="tp_password" type="password" placeholder="Min. 6 character">
+                                            <input id="tp_password" type="password" name="password" placeholder="Min. 6 character" />
                                         </div>
                                         <div class="tp-login-input-eye" id="password-show-toggle">
                                             <span id="open-eye" class="open-eye">
@@ -91,20 +103,22 @@
                                         </div>
                                         <div class="tp-login-input-title">
                                             <label for="tp_password">Password</label>
+
                                         </div>
+                                        <?= form_error('password'); ?>
                                     </div>
                                 </div>
                                 <div class="tp-login-suggetions d-sm-flex align-items-center justify-content-between mb-20">
-                                    <div class="tp-login-remeber">
+                                    <!-- <div class="tp-login-remeber">
                                         <input id="remeber" type="checkbox">
                                         <label for="remeber">Remember me</label>
                                     </div>
                                     <div class="tp-login-forgot">
                                         <a href="forgot.html">Forgot Password?</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="tp-login-bottom">
-                                    <a href="profile.html" class="tp-login-btn w-100">Login</a>
+                                    <button type="submit" class="tp-login-btn w-100">Login</button>
                                 </div>
                             </div>
                         </div>

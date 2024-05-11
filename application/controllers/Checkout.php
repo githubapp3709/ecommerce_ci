@@ -15,5 +15,6 @@ class Checkout extends CI_Controller
 
     public function index()
     {
+        echo "Hello this is checkout page";
     }
 }
