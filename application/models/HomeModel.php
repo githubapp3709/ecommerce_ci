@@ -53,4 +53,32 @@ class HomeModel extends CI_Model
             return false;
         }
     }
+
+    public function get_category_nav()
+    {
+        $q = $this->db->where(['status' => 1, 'parent_id' => ''])->get('ec_category');
+        if ($q->num_rows()) {
+            return $q->result();
+        } else {
+            return false;
+        }
+    }
+    public function get_subcat_check($cate_id)
+    {
+        $q = $this->db->where(['status' => 1, 'parent_id' => $cate_id])->get('ec_category');
+        if ($q->num_rows()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function get_subcategory($cate_id)
+    {
+        $q = $this->db->where(['status' => 1, 'parent_id' => $cate_id])->get('ec_category');
+        if ($q->num_rows()) {
+            return $q->result();
+        } else {
+            return false;
+        }
+    }
 }
